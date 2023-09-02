@@ -3,8 +3,15 @@ import './app.css';
 export default function App(){
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
+  const [mensagem, setMensagem]=useState('');
   function calcularIMC(){
-    alert("CLICOU");
+    const alt = altura/100;
+    const imc = peso / (alt * alt);
+    if(imc < 18.6){
+      setMensagem("voce esta abaixo do peso! o seu IMC: "+ imc.toFixed(2))
+    }else {
+      setMensagem("Cuidado Obsesidade! seu IMC:" + imc.toFixed(2))
+    }
   }
   return(
     <div className="app">
@@ -23,7 +30,7 @@ export default function App(){
         </button>
       </div>
 
-      <h2>Seu imc foi 25, voce esta abaixo do peso</h2>
+      <h2>{mensagem}</h2>
     </div>
   )
 }
